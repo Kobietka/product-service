@@ -2,8 +2,10 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"github.com/charmbracelet/log"
 	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/kobietka/product-service/internal/config"
 	dbsetup "github.com/kobietka/product-service/internal/database/setup"
 	"github.com/kobietka/product-service/internal/products"
 	productdb "github.com/kobietka/product-service/internal/products/database"
@@ -14,7 +16,14 @@ import (
 )
 
 func main() {
-	poolConfig, err := pgxpool.ParseConfig("postgres://postgres:mysecretpassword@localhost:5432/postgres")
+	configStore := config.NewConfigStore()
+
+	c, err := configStore.GetConfig()
+	if err != nil {
+		panic(err)
+	}
+
+	poolConfig, err := pgxpool.ParseConfig(c.DatabaseUrl)
 	if err != nil {
 		panic(err)
 	}
@@ -45,5 +54,5 @@ func main() {
 	productServer.Routes(e)
 	typeServer.Routes(e)
 
-	log.Fatal(e.Start(":8080"))
+	log.Fatal(e.Start(fmt.Sprintf(":%s", c.Port)))
 }
