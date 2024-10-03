@@ -1,0 +1,26 @@
+services:
+  product-service-postgres:
+    image: postgres:latest
+    container_name: product-service-postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - product_service_postgres_data:/var/lib/postgresql/data
+
+  product-service:
+    build: .
+    container_name: product-service
+    environment:
+      - DATABASE_URL=postgres://postgres:password@product-service-postgres:5432/postgres
+      - PORT=8080
+    ports:
+      - "8080:8080"
+    depends_on:
+      - product-service-postgres
+
+volumes:
+  product_service_postgres_data:
