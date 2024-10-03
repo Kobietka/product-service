@@ -12,6 +12,6 @@ var schema string
 //go:embed seed.sql
 var seed string
 
-func NewPostgresSeeder(pool *pgxpool.Pool) postgres.Seeder {
+func NewSeeder(pool *pgxpool.Pool) postgres.Seeder {
 	return postgres.NewSeeder(pool, schema, seed)
 }
