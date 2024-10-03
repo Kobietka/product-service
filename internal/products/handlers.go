@@ -48,10 +48,11 @@ func (s Server) handleSearchProduct(c echo.Context) error {
 		return c.NoContent(http.StatusBadRequest)
 	}
 
-	limit := searchLimit
-	if binding.Limit > 0 {
-		limit = min(binding.Limit, searchLimit)
+	if binding.Limit <= 0 {
+		return c.NoContent(http.StatusBadRequest)
 	}
+
+	limit := min(binding.Limit, searchLimit)
 
 	products, err := s.store.SearchProducts(c.Request().Context(), binding.Query, limit)
 	if err != nil {
