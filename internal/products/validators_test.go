@@ -38,6 +38,11 @@ func TestValidateProduct(t *testing.T) {
 		},
 	}
 
+	correctPackaging := v1.Quantity{
+		Value: 12,
+		Unit:  "g",
+	}
+
 	tests := []struct {
 		Name        string
 		Product     v1.Product
@@ -49,6 +54,7 @@ func TestValidateProduct(t *testing.T) {
 				Ean:       "12345678",
 				Name:      "product name",
 				Nutrition: correctNutrition,
+				Packaging: correctPackaging,
 			},
 			ExpectedErr: nil,
 		},
@@ -58,6 +64,7 @@ func TestValidateProduct(t *testing.T) {
 				Ean:       "1234567890123",
 				Name:      "product name",
 				Nutrition: correctNutrition,
+				Packaging: correctPackaging,
 			},
 			ExpectedErr: nil,
 		},
@@ -67,6 +74,7 @@ func TestValidateProduct(t *testing.T) {
 				Ean:       "123456789012",
 				Name:      "product name",
 				Nutrition: correctNutrition,
+				Packaging: correctPackaging,
 			},
 			ExpectedErr: nil,
 		},
@@ -76,6 +84,7 @@ func TestValidateProduct(t *testing.T) {
 				Ean:       "12345",
 				Name:      "product name",
 				Nutrition: correctNutrition,
+				Packaging: correctPackaging,
 			},
 			ExpectedErr: ErrorProductEanInvalid,
 		},
@@ -85,6 +94,7 @@ func TestValidateProduct(t *testing.T) {
 				Ean:       "",
 				Name:      "product name",
 				Nutrition: correctNutrition,
+				Packaging: correctPackaging,
 			},
 			ExpectedErr: ErrorProductEanMissing,
 		},
@@ -94,6 +104,7 @@ func TestValidateProduct(t *testing.T) {
 				Ean:       "    ",
 				Name:      "product name",
 				Nutrition: correctNutrition,
+				Packaging: correctPackaging,
 			},
 			ExpectedErr: ErrorProductEanMissing,
 		},
@@ -103,6 +114,7 @@ func TestValidateProduct(t *testing.T) {
 				Ean:       "12345678",
 				Name:      "",
 				Nutrition: correctNutrition,
+				Packaging: correctPackaging,
 			},
 			ExpectedErr: ErrorProductNameMissing,
 		},
@@ -112,6 +124,7 @@ func TestValidateProduct(t *testing.T) {
 				Ean:       "12345678",
 				Name:      "    ",
 				Nutrition: correctNutrition,
+				Packaging: correctPackaging,
 			},
 			ExpectedErr: ErrorProductNameMissing,
 		},
@@ -127,8 +140,22 @@ func TestValidateProduct(t *testing.T) {
 					},
 					Kcal: -123,
 				},
+				Packaging: correctPackaging,
 			},
 			ExpectedErr: ErrorQuantityUnitMissing,
+		},
+		{
+			Name: "product packaging is checked",
+			Product: v1.Product{
+				Ean:       "1234567890123",
+				Name:      "product name",
+				Nutrition: correctNutrition,
+				Packaging: v1.Quantity{
+					Value: -12,
+					Unit:  "g",
+				},
+			},
+			ExpectedErr: validateQuantity(v1.Quantity{Value: -12, Unit: "g"}),
 		},
 	}
 

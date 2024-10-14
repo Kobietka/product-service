@@ -26,6 +26,11 @@ func validateProduct(product v1.Product) error {
 		return ErrorProductNameMissing
 	}
 
+	err := validateQuantity(product.Packaging)
+	if err != nil {
+		return err
+	}
+
 	return validateNutrition(product.Nutrition)
 }
 
