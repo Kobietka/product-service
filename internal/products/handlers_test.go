@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	v1 "github.com/kobietka/product-service/pkg/api/v1"
+	v1 "github.com/Kobietka/product-service/pkg/api/v1"
 	"github.com/labstack/echo/v4"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"

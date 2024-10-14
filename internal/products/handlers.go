@@ -2,8 +2,8 @@ package products
 
 import (
 	"errors"
-	v1 "github.com/kobietka/product-service/pkg/api/v1"
-	"github.com/kobietka/product-service/pkg/text"
+	v1 "github.com/Kobietka/product-service/pkg/api/v1"
+	"github.com/Kobietka/product-service/pkg/text"
 	"github.com/labstack/echo/v4"
 	"net/http"
 )

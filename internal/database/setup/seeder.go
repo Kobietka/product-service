@@ -2,8 +2,8 @@ package setup
 
 import (
 	_ "embed"
+	"github.com/Kobietka/product-service/pkg/postgres"
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/kobietka/product-service/pkg/postgres"
 )
 
 //go:embed schema.sql

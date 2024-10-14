@@ -1,4 +1,4 @@
-module github.com/kobietka/product-service
+module github.com/Kobietka/product-service
 
 go 1.23.1
 

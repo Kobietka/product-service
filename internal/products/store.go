@@ -2,7 +2,7 @@ package products
 
 import (
 	"context"
-	v1 "github.com/kobietka/product-service/pkg/api/v1"
+	v1 "github.com/Kobietka/product-service/pkg/api/v1"
 )
 
 type Store interface {

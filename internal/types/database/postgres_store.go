@@ -3,9 +3,9 @@ package database
 import (
 	"context"
 	"errors"
+	"github.com/Kobietka/product-service/pkg/array"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/kobietka/product-service/pkg/array"
 )
 
 type PostgresStore struct {

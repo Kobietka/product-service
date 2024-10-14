@@ -3,15 +3,15 @@ package main
 import (
 	"context"
 	"fmt"
+	"github.com/Kobietka/product-service/internal/config"
+	dbsetup "github.com/Kobietka/product-service/internal/database/setup"
+	"github.com/Kobietka/product-service/internal/products"
+	productdb "github.com/Kobietka/product-service/internal/products/database"
+	"github.com/Kobietka/product-service/internal/types"
+	typesdb "github.com/Kobietka/product-service/internal/types/database"
+	"github.com/Kobietka/product-service/pkg/logger"
 	"github.com/charmbracelet/log"
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/kobietka/product-service/internal/config"
-	dbsetup "github.com/kobietka/product-service/internal/database/setup"
-	"github.com/kobietka/product-service/internal/products"
-	productdb "github.com/kobietka/product-service/internal/products/database"
-	"github.com/kobietka/product-service/internal/types"
-	typesdb "github.com/kobietka/product-service/internal/types/database"
-	"github.com/kobietka/product-service/pkg/logger"
 	"github.com/labstack/echo/v4"
 )
 

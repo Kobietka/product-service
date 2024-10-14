@@ -3,12 +3,12 @@ package database
 import (
 	"context"
 	"errors"
+	v1 "github.com/Kobietka/product-service/pkg/api/v1"
+	"github.com/Kobietka/product-service/pkg/array"
+	"github.com/Kobietka/product-service/pkg/postgres"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgconn"
 	"github.com/jackc/pgx/v5/pgxpool"
-	v1 "github.com/kobietka/product-service/pkg/api/v1"
-	"github.com/kobietka/product-service/pkg/array"
-	"github.com/kobietka/product-service/pkg/postgres"
 )
 
 type PostgresStore struct {

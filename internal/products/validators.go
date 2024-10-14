@@ -2,9 +2,9 @@ package products
 
 import (
 	"errors"
-	"github.com/kobietka/product-service/internal/ean"
-	v1 "github.com/kobietka/product-service/pkg/api/v1"
-	"github.com/kobietka/product-service/pkg/text"
+	"github.com/Kobietka/product-service/internal/ean"
+	v1 "github.com/Kobietka/product-service/pkg/api/v1"
+	"github.com/Kobietka/product-service/pkg/text"
 )
 
 var (
